@@ -1,41 +1,22 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const path=require('path')
-app.set("view-engine","ejs")
+
+// Define the port
+const port = 3000;
+
+// Set view engine to EJS
+app.set('view engine', 'ejs');
+
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use(express.json());
-
+// Define routes
 app.get('/', (req, res) => {
-    res.render('hey');
-})
-
-app.get('/create', async (req, res) => {
-    let createdUser = await userModel.create({
-        name: "Pragat",
-        email: "mittalpragat@gmail.com",
-        username: "mittalpragat"
-    })
-    res.send(createdUser);
-})
-
-app.get('/update', async (req, res) => {
-    let updatedUser = await userModel.findOneAndUpdate({ username: "Pragat" }, { name: "pragat mittal" }, { new: true })
-    res.send(updatedUser);
-})
-
-app.get('/read', async (req, res) => {
-    let users = await userModel.find();
-    res.send(users);
-})
-
-app.get('/delete', async (req, res) => {
-    let users = await userModel.findOneAndDelete({ username: "Pragat" });
-    res.send(users);
-})
+    res.render('index'); // Ensure hey.ejs exists in the views directory
+});
 
 // Start server
 app.listen(port, () => {
