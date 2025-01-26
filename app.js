@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('hey');
+    res.render('hey');
 })
 
 app.get('/create', async (req, res) => {
