@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
+const userModel=require('./models/user');
+const { all } = require('axios');
 // Define the port
 const port = 3000;
 
@@ -18,12 +19,21 @@ app.get('/', (req, res) => {
     res.render('index'); // Ensure hey.ejs exists in the views directory
 });
 
-app.get('/read', (req, res) => {
-    res.render('read'); // Ensure hey.ejs exists in the views directory
+app.get('/read', async(req, res) => {
+   let users= await userModel.find()
+    res.render('read',{users}); // Ensure hey.ejs exists in the views directory
 });
 
-app.post('/create',(req,res)=>{
-    res.render("read")
+app.post('/create',async(req,res)=>{
+    
+    let {name,email,image}=req.body;
+
+    let createdUser=await userModel.create({
+        name ,
+        email,
+        image
+    });
+    res.send(createdUser)
 })
 // Start server
 app.listen(port, () => {
