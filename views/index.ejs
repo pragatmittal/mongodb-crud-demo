@@ -11,11 +11,15 @@
 </head>
 <body>
     <div class="w-full h-full bg-zinc-900 p-10 text-white">
-        <form action="">
-            <input class="px-5 py-2 border-2 border-zinc-800 " type="text" value="Create">
-            <input class="px-5 py-2 border-2 border-zinc-800 " type="text" value="Create">
-            <input class="px-5 py-2 border-2 border-zinc-800 " type="text" value="Create">
-            <input class="px-5 py-2 bg-blue-500 " type="submit" value="Create your "> 
+        <div class="nav mb-10">
+            <a class="text-blue-500" href="/read">Read Users</a>
+        </div>
+        <h1 class="text-3xl tracking-tighter mb-3"> Create User</h1>
+        <form action="/create" method="post">
+            <input class="px-5 py-2 border-2 border-zinc-800 outline-none round-lg bg-transparent  " type="text" name="name" value="Name">
+            <input class="px-5 py-2 border-2 border-zinc-800  outline-none round-lg bg-transparent " type="text" name="Email" value="Email">
+            <input class="px-5 py-2 border-2 border-zinc-800  outline-none round-lg bg-transparent " type="text" name="ImageURL" value="ImageURL">
+            <input class="px-5 py-2 bg-blue-500 rounded-lg  ml-3 " type="submit" value="Create User"> 
         </form>
     </div>
 </body>

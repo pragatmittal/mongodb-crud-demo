@@ -18,6 +18,13 @@ app.get('/', (req, res) => {
     res.render('index'); // Ensure hey.ejs exists in the views directory
 });
 
+app.get('/read', (req, res) => {
+    res.render('read'); // Ensure hey.ejs exists in the views directory
+});
+
+app.post('/create',(req,res)=>{
+    res.render("read")
+})
 // Start server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
