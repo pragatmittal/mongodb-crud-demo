@@ -24,8 +24,12 @@ app.get('/read', async(req, res) => {
     res.render('read',{users}); // Ensure hey.ejs exists in the views directory
 });
 
+app.get('/delete/:id', async(req, res) => {
+    let users= await userModel.findOneAndDelete({_id:req.params.id})
+     res.redirect("/read"); // Ensure hey.ejs exists in the views directory
+ });
 app.post('/create',async(req,res)=>{
-    
+
     let {name,email,image}=req.body;
 
     let createdUser=await userModel.create({
@@ -33,7 +37,7 @@ app.post('/create',async(req,res)=>{
         email,
         image
     });
-    res.send(createdUser)
+    res.redirect("/read")
 })
 // Start server
 app.listen(port, () => {
