@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const userModel=require('./models/user');
+const userModel = require('./models/user');
 const { all } = require('axios');
+// Remove this line since we already have userModel
+// const User = require('./models/userModel');  
+
 // Define the port
 const port = 3000;
 
@@ -28,6 +31,14 @@ app.get('/delete/:id', async(req, res) => {
     let users= await userModel.findOneAndDelete({_id:req.params.id})
      res.redirect("/read"); // Ensure hey.ejs exists in the views directory
  });
+ 
+
+app.get('/edit/:id', async(req, res) => {
+   let user = await userModel.findOne({_id:req.params.id});
+   res.render("edit",{user});
+
+ });
+
 app.post('/create',async(req,res)=>{
 
     let {name,email,image}=req.body;
