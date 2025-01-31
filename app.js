@@ -2,9 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const userModel = require('./models/user');
-const { all } = require('axios');
-// Remove this line since we already have userModel
-// const User = require('./models/userModel');  
+// Remove this line since we're not using axios
+// const { all } = require('axios');  
 
 // Define the port
 const port = 3000;
@@ -39,9 +38,13 @@ app.get('/edit/:id', async(req, res) => {
 
  });
  app.post('/update/:userid', async(req, res) => {
-    let {image,name,email}=req.body;
-    let user = await userModel.findOne({_id:req.params.id},{image,name,email},{new:true});
-   res.redirect("/read");
+    let {image, name, email} = req.body;
+    let user = await userModel.findOneAndUpdate(
+        {_id: req.params.userid},
+        {image, name, email},
+        {new: true}
+    );
+    res.redirect("/read");
  
  });
 
