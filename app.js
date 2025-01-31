@@ -38,6 +38,12 @@ app.get('/edit/:id', async(req, res) => {
    res.render("edit",{user});
 
  });
+ app.post('/update/:userid', async(req, res) => {
+    let {image,name,email}=req.body;
+    let user = await userModel.findOne({_id:req.params.id},{image,name,email},{new:true});
+   res.redirect("/read");
+ 
+ });
 
 app.post('/create',async(req,res)=>{
 
